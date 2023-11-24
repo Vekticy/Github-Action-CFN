@@ -32,6 +32,13 @@ jobs:
     - name: Deploy CloudFormation to main branch
       if: github.ref == 'refs/heads/main'                      # This is not necessary, logic is in deploy.py
       run: |
+        echo "You are now in main branch..."
+        python scripts/deploy.py
+
+    - name: Deploy CloudFormation to dev branch
+      if: github.ref == 'refs/heads/dev'                      # This is not necessary, logic is in deploy.py
+      run: |
+        echo "You are now in dev branch..."
         python scripts/deploy.py
 
 
