@@ -25,10 +25,9 @@ jobs:
         role-session-name: samplerolesession
         aws-region: ap-southeast-2
 
-    - name: Deploy CloudFormation to Dev
+    - name: Deploy CloudFormation to main branch
       if: github.ref == 'refs/heads/main'
       run: |
-        aws sts get-caller-identity
         python scripts/deploy.py
 
 
