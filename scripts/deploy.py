@@ -3,7 +3,7 @@ import sys
 
 def get_branch_name():
 
-    # If not, try to get the branch name using git
+    # try to get the branch name using git
     try:
         result = os.popen('git rev-parse --abbrev-ref HEAD').read().strip()
         return result
@@ -14,10 +14,12 @@ def get_branch_name():
 def main():
     branch_name = get_branch_name()
     
-    if branch_name:
-        print(f"The branch name is: {branch_name}")
+    if branch_name == "main":
+        account_id = os.getenv("AWS_ACCOUNT_PRD")
+        print(f"Deploying cloudformation to {account_id} ")
     else:
-        print("Unable to determine the branch name.")
+        account_id = os.getenv("AWS_ACCOUNT_NPD")
+        print(f"Deploying cloudformation to {account_id} ")
 
 if __name__ == "__main__":
     main()

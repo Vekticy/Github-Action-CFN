@@ -8,7 +8,11 @@ on:
 
 permissions:
   id-token: write   
-  contents: read   
+  contents: read 
+  
+env:
+  AWS_ACCOUNT_PRD: 3917146425
+  AWS_ACCOUNT_NPD: 4228463639
 
 jobs:
   deploy:
@@ -26,7 +30,7 @@ jobs:
         aws-region: ap-southeast-2
 
     - name: Deploy CloudFormation to main branch
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/main'                      # This is not necessary, logic is in deploy.py
       run: |
         python scripts/deploy.py
 
